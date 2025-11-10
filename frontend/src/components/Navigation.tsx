@@ -20,11 +20,15 @@ export default function Navigation() {
   }, [location.pathname]);
 
   return (
-    <nav className="w-full bg-white shadow fixed top-0 left-0 z-50">
-      <div className="max-w-screen-xl mx-auto px-4 relative">
-        {/* Wrapper flex for alignment */}
-        <div className="flex items-center justify-center py-3 sm:py-4">
-          {/* Desktop Navigation */}
+    // use env(safe-area-inset-top) to avoid white padding due to notches/status bars
+    <nav
+      className="w-full fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md shadow"
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
+    >
+      <div className="max-w-screen-xl mx-auto px-4">
+        {/* header wrapper with fixed height so toggle centers nicely */}
+        <div className="relative flex items-center justify-center h-16 sm:h-20">
+          {/* Desktop Navigation (centered) */}
           <div className="hidden sm:flex sm:items-center sm:justify-center flex-1">
             <div className="flex overflow-x-auto no-scrollbar gap-2 sm:gap-4 py-1 sm:py-0 justify-center">
               {navItems.map((item) => {
@@ -49,14 +53,18 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Mobile Menu Toggle - fixed to top right */}
-          <div className="sm:hidden absolute right-4 top-3">
+          {/* Mobile Menu Toggle - fixed to top right but vertically centered */}
+          <div className="sm:hidden absolute right-4 top-1/2 -translate-y-1/2">
             <button
               onClick={() => setOpen((s) => !s)}
               aria-expanded={open}
               aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
-              className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              // larger tappable area, dark red color, visible focus ring
+              className={`w-11 h-11 flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300 transition-all ${
+                open ? 'bg-red-700 text-white' : 'bg-white text-red-700 shadow-sm'
+              }`}
             >
+              {/* lucide icons inherit current text color */}
               {open ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
