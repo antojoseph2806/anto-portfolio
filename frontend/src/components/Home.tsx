@@ -7,8 +7,8 @@ const Home: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const backgroundImages = [
-    'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    'https://wallpaperaccess.com/full/3239444.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    'https://wallpaperaccess.com/full/3239479.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
     'https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
   ];
 
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
               <Github size={24} />
             </a>
             <a
-              href="https://linkedin.com/in/antomaruthaniyil"
+              href="https://in.linkedin.com/in/antomaruthaniyil"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-amber-400 transform transition-transform duration-300 hover:scale-110"

@@ -63,13 +63,13 @@ const Contact: React.FC = () => {
     {
       icon: Linkedin,
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/antomaruthaniyil',
+      url: 'https://in.linkedin.com/in/antomaruthaniyil',
       color: 'hover:text-blue-600'
     },
     {
       icon: Instagram,
       name: 'Instagram',
-      url: 'https://instagram.com/anto_joseph_maruthaniyil',
+      url: 'https://instagram.com/anto__joseph',
       color: 'hover:text-blue-400'
     }
   ];
