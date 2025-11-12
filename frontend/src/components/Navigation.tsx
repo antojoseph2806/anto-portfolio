@@ -162,14 +162,6 @@ export default function Navigation() {
             <div className="p-3">
               {/* Top row: optional close button visually aligned */}
               <div className="flex items-center justify-between">
-                <div className="text-sm font-semibold text-gray-700 px-2">Navigation</div>
-                <button
-                  onClick={() => setOpen(false)}
-                  aria-label="Close menu"
-                  className="p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                >
-                  <X size={18} />
-                </button>
               </div>
 
               {/* Nav items */}
