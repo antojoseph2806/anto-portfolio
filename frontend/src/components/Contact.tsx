@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
     {
       icon: Instagram,
       name: 'Instagram',
-      url: 'https://instagram.com/anto___joseph',
+      url: 'https://instagram.com/anto_maruthaniyil',
       color: 'hover:text-blue-400'
     }
   ];
