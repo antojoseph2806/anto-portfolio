@@ -74,7 +74,7 @@ const About: React.FC = () => {
                 <div className="relative">
                   <div className="w-80 h-80 mx-auto rounded-2xl overflow-hidden shadow-2xl transform rotate-2 group-hover:rotate-0 transition-all duration-500 border-4 border-white/20 backdrop-blur-sm">
                     <img
-                      src="anto.jpg"
+                      src="Anto.png"
                       alt="Profile"
                       className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                     />
