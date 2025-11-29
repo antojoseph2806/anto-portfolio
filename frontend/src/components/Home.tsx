@@ -62,7 +62,7 @@ const Home: React.FC = () => {
             <span>Hello, I'm</span>
             <br />
             <span className="bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent">
-              Anto Joseph
+              Anto Joseph Maruthaniyil
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 font-light mb-4">
