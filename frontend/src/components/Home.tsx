@@ -66,7 +66,7 @@ const Home: React.FC = () => {
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 font-light mb-4">
-            MCA Student & Aspiring Web Developer
+            Web Developer
           </p>
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-10 px-2">
             Crafting digital experiences with passion and precision. Specializing in modern web technologies and innovative solutions.

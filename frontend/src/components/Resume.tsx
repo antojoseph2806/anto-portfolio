@@ -90,7 +90,7 @@ const Resume: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
               <div className="flex-1 min-w-0">
                 <h1 className="text-3xl sm:text-4xl font-bold mb-1 truncate">Anto Joseph</h1>
-                <p className="text-lg sm:text-xl text-blue-100 mb-4">MCA Student</p>
+                <p className="text-lg sm:text-xl text-blue-100 mb-4">Web Developer</p>
 
                 <div className="grid sm:grid-cols-2 gap-3 text-sm">
                   <div className="flex items-center space-x-2 truncate">

@@ -93,13 +93,9 @@ const About: React.FC = () => {
             <div className={`transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
               <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20">
                 <h2 className="text-4xl font-bold mb-8">
-                  <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 bg-clip-text text-transparent">
-                    MCA Student &<br />
                     <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                       Aspiring Developer
                     </span>
-                  </span>
-                </h2>
                 
                 <div className="space-y-6">
                   <p className="text-lg text-gray-700 leading-relaxed bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent font-medium">
