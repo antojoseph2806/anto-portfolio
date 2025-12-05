@@ -54,7 +54,7 @@ const About: React.FC = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200/50 shadow-sm mb-6">
               <Sparkles className="w-4 h-4 text-amber-500" />
               <span className="text-sm font-medium bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                Passionate Developer
+                Web Developer
               </span>
             </div>
             <h1 className="text-5xl sm:text-6xl font-bold mb-6">
@@ -94,7 +94,7 @@ const About: React.FC = () => {
               <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20">
                 <h2 className="text-4xl font-bold mb-8">
                     <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                      Aspiring Developer
+                      Web Developer
                     </span>
                 </h2>
                 
