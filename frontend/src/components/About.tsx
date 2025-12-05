@@ -96,6 +96,7 @@ const About: React.FC = () => {
                     <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                       Aspiring Developer
                     </span>
+                </h2>
                 
                 <div className="space-y-6">
                   <p className="text-lg text-gray-700 leading-relaxed bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent font-medium">
