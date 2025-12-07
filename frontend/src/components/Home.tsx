@@ -95,7 +95,7 @@ const Home: React.FC = () => {
             </button>
           </div>
 
-          {/* Social Icons */}
+          {/* Social Icons**** */}
           <div className="flex justify-center space-x-5">
             <a
               href="https://github.com/antojoseph2806"
