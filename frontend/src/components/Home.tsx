@@ -62,11 +62,11 @@ const Home: React.FC = () => {
             <span>Hello, I'm</span>
             <br />
             <span className="bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent">
-              Anto Joseph Maruthaniyil
+              Anto Joseph
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 font-light mb-4">
-            Web Developer
+            Full Stack Web Developer
           </p>
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-10 px-2">
             Crafting digital experiences with passion and precision. Specializing in modern web technologies and innovative solutions.

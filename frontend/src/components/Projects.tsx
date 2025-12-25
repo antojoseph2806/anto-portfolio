@@ -60,6 +60,23 @@ const Projects: React.FC = () => {
       technologies: ['HTML5','JavaScript', 'Razorpay', 'Trivia API','CSS'],
       live: 'https://quiz-app-beta-roan.vercel.app/',
     },
+    {
+      id: 2,
+      title: 'Real-Time IoT Security System',
+      description:
+        'Designed and developed a real-time IoT security monitoring system using ESP32, proximity, and sound sensors. Built a live dashboard with Node.js and Socket.IO to enable low-latency event streaming, real-time intrusion detection, and continuous monitoring through WebSocket-based communication. The system supports scalable event handling and responsive visualization for security alerts.',
+      image: 'i.jpg',
+      technologies: [
+      'ESP32',
+      'Node.js',
+      'Socket.IO',
+      'WebSockets',
+      'JavaScript',
+      'IoT Sensors'
+      ],
+      github: 'https://github.com/antojoseph2806/iot-security-system'
+    }
+
   ];
 
   return (
@@ -115,9 +132,9 @@ const Projects: React.FC = () => {
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4 text-sm line-clamp-2">{project.description}</p>
+                  <p className="text-gray-600 mb-4 text-sm">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                    {project.technologies.slice(0, 8).map((tech, techIndex) => (
                       <span
                         key={techIndex}
                         className="px-2 py-1 bg-gray-100 text-gray-700 rounded-md text-xs"

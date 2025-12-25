@@ -6,6 +6,7 @@ import {
   Github,
   Linkedin,
   Instagram,
+  Facebook,
   Clock,
   Globe
 } from 'lucide-react';
@@ -43,7 +44,6 @@ const Contact: React.FC = () => {
       icon: MapPin,
       title: 'Location',
       content: 'Idukki, Kerala',
-      action: 'https://maps.app.goo.gl/g29dcF8m1bPerbcB8'
     },
     {
       icon: Globe,
@@ -69,7 +69,13 @@ const Contact: React.FC = () => {
     {
       icon: Instagram,
       name: 'Instagram',
-      url: 'https://instagram.com/anto_maruthaniyil',
+      url: 'https://instagram.com/iam___.anto',
+      color: 'hover:text-blue-400'
+    },
+    {
+      icon: Facebook,
+      name: 'Facebook',
+      url: 'https://www.facebook.com/antomaruthaniyil',
       color: 'hover:text-blue-400'
     }
   ];
