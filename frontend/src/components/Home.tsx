@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Home: React.FC = () => {
   const containerRef = useRef(null);
   
-  // Parallax scroll effects
+  // Parallax scroll effect
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
