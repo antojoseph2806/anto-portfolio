@@ -1,24 +1,19 @@
-import { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Github, Linkedin, Mail, Download, ArrowRight, Code2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
+  
+  // Parallax scroll effects
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
 
-  const backgroundImages = [
-    'https://wallpaperaccess.com/full/3239444.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    'https://wallpaperaccess.com/full/3239479.jpg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-    'https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-  ];
-
-  useEffect(() => {
-    setIsVisible(true);
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % backgroundImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
@@ -29,118 +24,269 @@ const Home: React.FC = () => {
     document.body.removeChild(link);
   };
 
+  const socialLinks = [
+    {
+      icon: Github,
+      name: 'GitHub',
+      url: 'https://github.com/antojoseph2806',
+      color: 'hover:bg-gray-900'
+    },
+    {
+      icon: Linkedin,
+      name: 'LinkedIn',
+      url: 'https://in.linkedin.com/in/antomaruthaniyil',
+      color: 'hover:bg-blue-600'
+    },
+    {
+      icon: Mail,
+      name: 'Email',
+      url: 'mailto:antojoseph2026@gmail.com',
+      color: 'hover:bg-purple-600'
+    }
+  ];
+
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Background Images */}
-      <div className="absolute inset-0">
-        {backgroundImages.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <img
-              src={image}
-              alt={`Background ${index + 1}`}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        ))}
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-md" />
+    <section ref={containerRef} className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      {/* Animated Background Elements */}
+      <motion.div 
+        style={{ y, opacity }}
+        className="absolute inset-0 pointer-events-none"
+      >
+        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+      </motion.div>
+
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(59, 130, 246, 0.3) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(59, 130, 246, 0.3) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px'
+        }} />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-20 sm:py-32 md:py-40 lg:py-48 min-h-screen">
-        <div
-          className={`transition-all duration-1000 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}
-        >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-            <span>Hello, I'm</span>
-            <br />
-            <span className="bg-gradient-to-r from-amber-400 to-amber-200 bg-clip-text text-transparent">
-              Anto Joseph
-            </span>
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-200 font-light mb-4">
-            Full Stack Web Developer
-          </p>
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-10 px-2">
-            Crafting digital experiences with passion and precision. Specializing in modern web technologies and innovative solutions.
-          </p>
-        </div>
-
-        {/* Buttons */}
-        <div
-          className={`transition-all duration-1000 delay-500 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}
-        >
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <Link to="/projects">
-              <button
-                className="px-6 py-3 text-sm sm:text-base bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-full hover:from-amber-600 hover:to-amber-700 transform hover:scale-105 transition-all duration-300 shadow-md"
+      <div className="relative z-10 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Column - Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Main Heading */}
+              <motion.h1 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
               >
-                View My Work
-              </button>
-            </Link>
-            <button
-              onClick={handleDownloadResume}
-              className="px-6 py-3 text-sm sm:text-base border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition-all duration-300 shadow-md"
+                <span className="text-white">Hello, I'm</span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
+                  Anto Joseph
+                </span>
+              </motion.h1>
+
+              {/* Subtitle */}
+              <motion.p 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="text-2xl text-blue-200 mb-4 font-medium"
+              >
+                Full Stack Web Developer
+              </motion.p>
+
+              {/* Description */}
+              <motion.p 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="text-lg text-gray-300 mb-8 leading-relaxed max-w-xl"
+              >
+                Crafting exceptional digital experiences with modern web technologies. 
+                Specializing in building scalable, performant applications that drive results.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="flex flex-wrap gap-4 mb-8"
+              >
+                <Link to="/projects">
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold rounded-xl transition-all duration-300 flex items-center space-x-2 shadow-lg shadow-blue-500/50"
+                  >
+                    <span>View My Work</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.button>
+                </Link>
+                <motion.button
+                  onClick={handleDownloadResume}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-xl transition-all duration-300 flex items-center space-x-2"
+                >
+                  <Download className="w-5 h-5" />
+                  <span>Download Resume</span>
+                </motion.button>
+              </motion.div>
+
+              {/* Social Links */}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 1, duration: 0.8 }}
+                className="flex items-center space-x-4"
+              >
+                <span className="text-gray-400 text-sm">Connect:</span>
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      key={index}
+                      href={social.url}
+                      target={social.url.startsWith('http') ? '_blank' : undefined}
+                      rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ delay: 1.2 + index * 0.1, type: "spring" }}
+                      whileHover={{ scale: 1.2, y: -4 }}
+                      whileTap={{ scale: 0.9 }}
+                      className={`w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl flex items-center justify-center text-white ${social.color} transition-all duration-300`}
+                      aria-label={social.name}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </motion.a>
+                  );
+                })}
+              </motion.div>
+            </motion.div>
+
+            {/* Right Column - Visual Element */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="relative hidden lg:block"
             >
-              Download Resume
-            </button>
+              {/* Animated Tech Stack Display */}
+              <div className="relative">
+                {/* Main Circle */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                  className="w-96 h-96 mx-auto relative"
+                >
+                  {/* Orbiting Tech Icons */}
+                  {[
+                    { name: 'React', color: 'from-cyan-400 to-blue-500', delay: 0 },
+                    { name: 'Node', color: 'from-green-400 to-emerald-500', delay: 0.2 },
+                    { name: 'TypeScript', color: 'from-blue-500 to-indigo-500', delay: 0.4 },
+                    { name: 'MongoDB', color: 'from-green-500 to-teal-500', delay: 0.6 },
+                    { name: 'Python', color: 'from-yellow-400 to-blue-500', delay: 0.8 },
+                    { name: 'Tailwind', color: 'from-cyan-400 to-blue-400', delay: 1 }
+                  ].map((tech, index) => {
+                    const angle = (index * 60) * (Math.PI / 180);
+                    const x = Math.cos(angle) * 150;
+                    const y = Math.sin(angle) * 150;
+                    
+                    return (
+                      <motion.div
+                        key={tech.name}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: tech.delay, duration: 0.5 }}
+                        className="absolute top-1/2 left-1/2"
+                        style={{
+                          transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
+                        }}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.2, rotate: 360 }}
+                          className={`w-16 h-16 bg-gradient-to-br ${tech.color} rounded-2xl flex items-center justify-center shadow-2xl border-2 border-white/30 backdrop-blur-sm cursor-pointer`}
+                        >
+                          <span className="text-white font-bold text-xs">{tech.name}</span>
+                        </motion.div>
+                      </motion.div>
+                    );
+                  })}
+
+                  {/* Center Element */}
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.1, 1],
+                      rotate: [0, 180, 360]
+                    }}
+                    transition={{ 
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 rounded-3xl flex items-center justify-center shadow-2xl border-4 border-white/30 backdrop-blur-sm"
+                  >
+                    <Code2 className="w-16 h-16 text-white" />
+                  </motion.div>
+                </motion.div>
+
+                {/* Floating Particles */}
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    animate={{
+                      y: [0, -30, 0],
+                      x: [0, Math.random() * 20 - 10, 0],
+                      opacity: [0.3, 0.8, 0.3]
+                    }}
+                    transition={{
+                      duration: 3 + Math.random() * 2,
+                      repeat: Infinity,
+                      delay: i * 0.2
+                    }}
+                    className="absolute w-2 h-2 bg-cyan-400 rounded-full"
+                    style={{
+                      top: `${Math.random() * 100}%`,
+                      left: `${Math.random() * 100}%`
+                    }}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </div>
 
-          {/* Social Icons**** */}
-          <div className="flex justify-center space-x-5">
-            <a
-              href="https://github.com/antojoseph2806"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-amber-400 transform transition-transform duration-300 hover:scale-110"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              href="https://in.linkedin.com/in/antomaruthaniyil"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-amber-400 transform transition-transform duration-300 hover:scale-110"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="mailto:antojoseph2026@gmail.com"
-              className="text-gray-300 hover:text-amber-400 transform transition-transform duration-300 hover:scale-110"
-            >
-              <Mail size={24} />
-            </a>
-          </div>
+          {/* Mobile Tech Stack */}
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="mt-12 lg:hidden"
+          >
+            <div className="flex flex-wrap justify-center gap-3">
+              {['React', 'Node.js', 'TypeScript', 'MongoDB', 'Python', 'Tailwind'].map((tech, index) => (
+                <motion.div
+                  key={tech}
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 1.4 + index * 0.1, type: "spring" }}
+                  whileHover={{ scale: 1.1, y: -4 }}
+                  className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white text-sm font-medium shadow-lg"
+                >
+                  {tech}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-        <ChevronDown size={28} />
-      </div>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-6 right-6 flex space-x-2">
-        {backgroundImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide
-                ? 'bg-amber-400 scale-125'
-                : 'bg-white/50 hover:bg-white/80'
-            }`}
-          />
-        ))}
       </div>
     </section>
   );
