@@ -2,51 +2,42 @@ import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ExternalLink, Github, Sparkles, Code2, Zap } from 'lucide-react';
 
-// Scroll-triggered section component
+// Scroll-triggered section component - Optimized
 const ScrollSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay = 0 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
     >
       {children}
     </motion.div>
   );
 };
 
-// Project Card with Parallax
+// Project Card - Optimized for performance
 const ProjectCard: React.FC<{ project: any; index: number }> = ({ project, index }) => {
   const ref = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
     <motion.div
       ref={ref}
-      style={{ y, opacity }}
-      initial={{ opacity: 0, scale: 0.8 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className="group relative"
     >
       <motion.div
-        whileHover={{ y: -12, scale: 1.02 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.3 }}
         className="bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-white/50 h-full"
       >
         {/* Image Section */}
@@ -54,6 +45,7 @@ const ProjectCard: React.FC<{ project: any; index: number }> = ({ project, index
           <motion.img
             src={project.image}
             alt={project.title}
+            loading="lazy"
             className="w-full h-full object-cover"
             animate={{ scale: isHovered ? 1.1 : 1 }}
             transition={{ duration: 0.6 }}

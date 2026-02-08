@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 const Home: React.FC = () => {
   const containerRef = useRef(null);
   
-  // Parallax scroll effect
+  // Simplified parallax for better performance
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
@@ -182,10 +182,10 @@ const Home: React.FC = () => {
             >
               {/* Animated Tech Stack Display */}
               <div className="relative">
-                {/* Main Circle */}
+                {/* Main Circle - Optimized rotation */}
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                   className="w-96 h-96 mx-auto relative"
                 >
                   {/* Orbiting Tech Icons */}
@@ -222,14 +222,13 @@ const Home: React.FC = () => {
                     );
                   })}
 
-                  {/* Center Element */}
+                  {/* Center Element - Simplified animation */}
                   <motion.div
                     animate={{ 
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 180, 360]
+                      scale: [1, 1.05, 1],
                     }}
                     transition={{ 
-                      duration: 4,
+                      duration: 3,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
@@ -239,24 +238,23 @@ const Home: React.FC = () => {
                   </motion.div>
                 </motion.div>
 
-                {/* Floating Particles */}
-                {[...Array(8)].map((_, i) => (
+                {/* Floating Particles - Reduced for performance */}
+                {[...Array(4)].map((_, i) => (
                   <motion.div
                     key={i}
                     animate={{
                       y: [0, -30, 0],
-                      x: [0, Math.random() * 20 - 10, 0],
-                      opacity: [0.3, 0.8, 0.3]
+                      opacity: [0.3, 0.6, 0.3]
                     }}
                     transition={{
                       duration: 3 + Math.random() * 2,
                       repeat: Infinity,
-                      delay: i * 0.2
+                      delay: i * 0.3
                     }}
                     className="absolute w-2 h-2 bg-cyan-400 rounded-full"
                     style={{
-                      top: `${Math.random() * 100}%`,
-                      left: `${Math.random() * 100}%`
+                      top: `${20 + Math.random() * 60}%`,
+                      left: `${20 + Math.random() * 60}%`
                     }}
                   />
                 ))}

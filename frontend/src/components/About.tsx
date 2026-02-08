@@ -2,46 +2,44 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Code, Palette, BrainCircuit, Server, Sparkles, Rocket, Lightbulb, Heart, Target, CheckCircle2 } from 'lucide-react';
 
-// Scroll-triggered section component
+// Scroll-triggered section component - Optimized
 const ScrollSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay = 0 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
     >
       {children}
     </motion.div>
   );
 };
 
-// Parallax Image Component
-const ParallaxImage: React.FC = () => {
+// Simplified Image Component - removed heavy parallax
+const AnimatedImage: React.FC = () => {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [2, -2]);
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <motion.div ref={ref} style={{ y }} className="relative group">
+    <motion.div 
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.6 }}
+      className="relative group"
+    >
       <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
       
-      <motion.div 
-        style={{ rotate }}
-        className="relative"
-      >
+      <div className="relative">
         <div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
           <motion.img
             src="Anto.png"
             alt="Anto Joseph"
+            loading="lazy"
             className="w-full h-full object-cover"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.5 }}
@@ -156,7 +154,7 @@ const About: React.FC = () => {
           
           {/* Profile Image Section */}
           <ScrollSection delay={0.2}>
-            <ParallaxImage />
+            <AnimatedImage />
           </ScrollSection>
 
           {/* Bio Section */}

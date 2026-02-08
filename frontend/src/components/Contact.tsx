@@ -23,30 +23,39 @@ init('zc_-kJ9FYyYotmaZY');
 const NAME_REGEX = /^[A-Za-zÀ-ž' -]{2,50}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Scroll-triggered section component
+// Scroll-triggered section component - Optimized
 const ScrollSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay = 0 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
     >
       {children}
     </motion.div>
   );
 };
 
-// Parallax card component
-const ParallaxCard: React.FC<{ children: React.ReactNode; index: number }> = ({ children, index }) => {
+// Simplified card component - removed heavy parallax
+const AnimatedCard: React.FC<{ children: React.ReactNode; index: number }> = ({ children, index }) => {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
@@ -279,7 +288,7 @@ const Contact: React.FC = () => {
             {contactInfo.map((info, index) => {
               const Icon = info.icon;
               return (
-                <ParallaxCard key={index} index={index}>
+                <AnimatedCard key={index} index={index}>
                   <motion.a
                     href={info.action}
                     whileHover={{ y: -8, scale: 1.02 }}
@@ -305,7 +314,7 @@ const Contact: React.FC = () => {
                       <p className="text-gray-600 text-sm break-words">{info.content}</p>
                     </div>
                   </motion.a>
-                </ParallaxCard>
+                </AnimatedCard>
               );
             })}
           </div>
