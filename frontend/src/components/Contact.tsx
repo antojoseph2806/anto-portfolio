@@ -57,15 +57,6 @@ const AnimatedCard: React.FC<{ children: React.ReactNode; index: number }> = ({ 
   );
 };
 
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
-  return (
-    <motion.div ref={ref} style={{ y }} transition={{ delay: index * 0.1 }}>
-      {children}
-    </motion.div>
-  );
-};
-
 const Contact: React.FC = () => {
   const [sending, setSending] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
