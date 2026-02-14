@@ -32,10 +32,10 @@ const AnimatedImage: React.FC = () => {
       transition={{ duration: 0.6 }}
       className="relative group"
     >
-      <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
+      <motion.div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
       
-      <div className="relative">
-        <div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
+      <motion.div className="relative">
+        <motion.div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
           <motion.img
             src="Anto.png"
             alt="Anto Joseph"
@@ -44,7 +44,7 @@ const AnimatedImage: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.5 }}
           />
-        </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );
