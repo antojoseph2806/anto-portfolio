@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { ExternalLink, Github, Sparkles, Code2, Zap } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 
 // Scroll-triggered section component - Optimized
 const ScrollSection: React.FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay = 0 }) => {
@@ -223,13 +223,17 @@ const Projects: React.FC = () => {
       image: 'i.jpg',
       technologies: ['ESP32', 'Node.js', 'Socket.IO', 'WebSockets', 'JavaScript', 'IoT Sensors'],
       github: 'https://github.com/antojoseph2806/iot-security-system'
-    }
-  ];
-
-  const stats = [
-    { icon: Code2, label: 'Projects Completed', value: '15+' },
-    { icon: Zap, label: 'Technologies Used', value: '20+' },
-    { icon: Github, label: 'GitHub Repos', value: '30+' }
+    },
+    {
+      id: 7,  
+      title: 'AgriCorus – Smart Agricultural Land Lease, Crowdfunding & Agri-Commerce Platform',
+      description: 
+        'Agriculture in India faces issues such as land underutilization, farmer capital shortages, limited technology adoption, fragmented value chains, and weak market linkages. Many land parcels remain idle while farmers lack access to land, credit, or infrastructure—and urban investors seek sustainable agri-investment opportunities with transparency. AgriCorus offers a unified Smart Land Lease, Agri-Funding & E-Commerce Platform connecting landowners, farmers, investors, vendors, and administrators. It enables leasing idle agricultural land, crowdfunding for cultivation, online farm-input commerce, and digital contract governance with secure escrow.',
+      image: 'agricorus.png',  // Put image in frontend/public folder
+      technologies: ['React.js', 'Node.js', 'Express.js','Tailwind CSS', 'MongoDB', 'RazorPay', 'Fast2Sms API'],
+      live: 'https://agricorus.vercel.app',  // Optional
+      github: 'https://github.com/antojoseph2806/agricorus',  // Optional
+}
   ];
 
   return (
@@ -275,38 +279,6 @@ const Projects: React.FC = () => {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto rounded-full shadow-lg"
             />
-          </div>
-        </ScrollSection>
-
-        {/* Stats Section */}
-        <ScrollSection delay={0.2}>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ scale: 0, rotate: -180 }}
-                  whileInView={{ scale: 1, rotate: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
-                  whileHover={{ y: -8, scale: 1.05 }}
-                  className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/50 text-center"
-                >
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
-                  >
-                    <Icon className="text-white" size={28} />
-                  </motion.div>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
-                </motion.div>
-              );
-            })}
           </div>
         </ScrollSection>
 

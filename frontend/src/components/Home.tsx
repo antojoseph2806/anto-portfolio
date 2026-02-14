@@ -262,28 +262,7 @@ const Home: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Mobile Tech Stack */}
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-12 lg:hidden"
-          >
-            <div className="flex flex-wrap justify-center gap-3">
-              {['React', 'Node.js', 'TypeScript', 'MongoDB', 'Python', 'Tailwind'].map((tech, index) => (
-                <motion.div
-                  key={tech}
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 1.4 + index * 0.1, type: "spring" }}
-                  whileHover={{ scale: 1.1, y: -4 }}
-                  className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white text-sm font-medium shadow-lg"
-                >
-                  {tech}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+
         </div>
       </div>
     </section>

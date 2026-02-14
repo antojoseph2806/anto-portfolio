@@ -170,7 +170,7 @@ const About: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Full Stack Web Developer & Problem Solver
+                  Full Stack Web Developer
                 </span>
               </motion.h2>
               
