@@ -112,19 +112,19 @@ const ProjectCard: React.FC<{ project: any; index: number }> = ({ project, index
         {/* Content Section */}
         <div className="p-6">
           <motion.h3 
-            className="text-xl font-bold text-gray-900 mb-3 line-clamp-1"
+            className="text-xl font-bold text-gray-900 mb-3"
             animate={{ color: isHovered ? '#3b82f6' : '#111827' }}
           >
             {project.title}
           </motion.h3>
           
-          <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">
+          <p className="text-gray-600 text-sm mb-4 leading-relaxed">
             {project.description}
           </p>
 
           {/* Technologies */}
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, 4).map((tech: string, techIndex: number) => (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.map((tech: string, techIndex: number) => (
               <motion.span
                 key={techIndex}
                 initial={{ opacity: 0, scale: 0 }}
@@ -137,10 +137,31 @@ const ProjectCard: React.FC<{ project: any; index: number }> = ({ project, index
                 {tech}
               </motion.span>
             ))}
-            {project.technologies.length > 4 && (
-              <span className="px-3 py-1 bg-gray-100 border border-gray-200 text-gray-600 rounded-lg text-xs font-medium">
-                +{project.technologies.length - 4}
-              </span>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex gap-3">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white rounded-lg text-sm font-medium transition-colors"
+              >
+                <Github size={16} />
+                <span>GitHub</span>
+              </a>
+            )}
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-lg text-sm font-medium transition-colors"
+              >
+                <ExternalLink size={16} />
+                <span>Live Demo</span>
+              </a>
             )}
           </div>
         </div>
