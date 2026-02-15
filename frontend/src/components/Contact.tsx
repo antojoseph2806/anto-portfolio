@@ -92,13 +92,6 @@ const Contact: React.FC = () => {
       title: 'Location',
       content: 'Idukki, Kerala',
       gradient: 'from-green-500 to-emerald-500'
-    },
-    {
-      icon: Globe,
-      title: 'Website',
-      content: 'www.antojoseph.website',
-      action: 'https://www.antojoseph.website',
-      gradient: 'from-orange-500 to-amber-500'
     }
   ];
 
@@ -118,14 +111,8 @@ const Contact: React.FC = () => {
     {
       icon: Instagram,
       name: 'Instagram',
-      url: 'https://instagram.com/anto_maruthaniyil',
+      url: 'https://instagram.com/iam_anto______',
       color: 'hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-600'
-    },
-    {
-      icon: Facebook,
-      name: 'Facebook',
-      url: 'https://www.facebook.com/antomaruthaniyil',
-      color: 'hover:bg-blue-600'
     }
   ];
 
